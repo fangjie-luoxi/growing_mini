@@ -2,7 +2,46 @@
   padding: 5px;
 }
 
-.has-padding {
+.nut-fixednav__btn {
+  background: linear-gradient(135deg, #19d8faf3 0%, #f0f8ff 100%);
+}
+
+.noticebar {
   padding: 0px 10px;
+  border-radius: 10px;
   background-color: #f0f8ff;
+  margin-bottom: 5px;
+}
+
+.integral {
+  border-radius: 10px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  background-color: #f0f8ff;
+  margin-bottom: 5px;
+}
+
+.integral-title {
+  font-size: 12px; /*字体大小*/
+  line-height: 20px; /*行高*/
+  color: rgb(0, 162, 255);
+  font-family: 幼圆, 黑体; /*字体类型：如果没有幼圆就显示黑体，没有黑体就显示默认*/
+  font-style: normal; /*italic表示斜体，normal表示不倾斜*/
+}
+
+.integral-num {
+  font-size: 40px; /*字体大小*/
+  line-height: 40px; /*行高*/
+  color: rgb(0, 162, 255);
+  font-family: 幼圆, 黑体; /*字体类型：如果没有幼圆就显示黑体，没有黑体就显示默认*/
+  font-style: normal; /*italic表示斜体，normal表示不倾斜*/
+  font-weight: bold;
+}
+
+.tabs {
+  overflow: hidden;
+  border-radius: 10px;
 }

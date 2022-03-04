@@ -19,6 +19,18 @@ import {
   Popup,
   OverLay,
   NoticeBar,
+  Tabs,
+  TabPane,
+  FixedNav,
+  Navbar,
+  Form,
+  FormItem,
+  CellGroup,
+  Input,
+  InputNumber,
+  TextArea,
+  DatePicker,
+  Picker,
 } from '@nutui/nutui-taro'
 
 const App = createApp({
@@ -44,5 +56,17 @@ App.use(Button)
   .use(Popup)
   .use(OverLay)
   .use(NoticeBar)
+  .use(Tabs)
+  .use(TabPane)
+  .use(FixedNav)
+  .use(Navbar)
+  .use(Form)
+  .use(FormItem)
+  .use(CellGroup)
+  .use(Input)
+  .use(InputNumber)
+  .use(TextArea)
+  .use(DatePicker)
+  .use(Picker)
 
 export default App

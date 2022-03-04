@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  pages: ['pages/index/index', 'pages/my/index'],
+  pages: ['pages/index/index','pages/manage/index', 'pages/my/index'],
   tabBar: {
     color: '#444444',
     selectedColor: '#6190E8',
@@ -10,6 +10,12 @@ export default defineAppConfig({
         iconPath: './assets/images/tabBar/home.png',
         selectedIconPath: './assets/images/tabBar/homed.png',
         text: '首页',
+      },
+      {
+        pagePath: 'pages/manage/index',
+        iconPath: './assets/images/tabBar/manage.png',
+        selectedIconPath: './assets/images/tabBar/managed.png',
+        text: '管理',
       },
       {
         pagePath: 'pages/my/index',
@@ -29,7 +35,10 @@ export default defineAppConfig({
     {
       root: 'pages/subpages',
       pages: [
-        "user/index"
+        "user/index",
+        "addRule/index",
+        "addTask/index",
+        "addTarget/index",
       ],
     },
   ],

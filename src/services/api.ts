@@ -87,3 +87,52 @@ export function request(url: string, params?: dataType) {
   // eslint-disable-next-line
   return Taro.request(option)
 }
+
+// getDataById通过id获取数据
+export async function getOne(tableName: string, id: number, param?: any) {
+  const res = await request(baseUrl + '/' + tableName + '/' + id, {
+    data: param,
+  })
+  return res.data
+}
+
+// getDataList 获取数据
+export async function getList(tableName: string, param?: any) {
+  const res = await request(baseUrl + '/' + tableName, { data: param })
+  return res.data
+}
+
+// create 创建
+export async function create(tableName: string, param?: any) {
+  const res = await request(baseUrl + '/' + tableName, {
+    data: param,
+    method: 'PUT',
+  })
+  return res.data
+}
+
+// updata 修改
+export async function updata(tableName: string, id: number, param?: any) {
+  const res = await request(baseUrl + '/' + tableName + '/' + id, {
+    data: param,
+    method: 'POST',
+  })
+  return res.data
+}
+
+// deleteById 删除
+export async function deleteById(tableName: string, id: number) {
+  const res = await request(baseUrl + '/' + tableName + '/' + id, {
+    method: 'DELETE',
+  })
+  return res.data
+}
+
+// deletes 删除多个
+export async function deletes(tableName: string, ids: number[]) {
+  const res = await request(baseUrl + '/' + tableName, {
+    data: { Ids: ids },
+    method: 'POST',
+  })
+  return res.data
+}
