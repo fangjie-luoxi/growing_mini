@@ -30,7 +30,6 @@
             "disablePlugins": [],
             "outputPath": ""
         },
-        "requiredBackgroundModes":["audio"],
         "enableEngineNative": false,
         "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,

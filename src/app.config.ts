@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  pages: ['pages/index/index','pages/manage/index', 'pages/my/index'],
+  pages: ['pages/index/index', 'pages/manage/index', 'pages/my/index'],
   tabBar: {
     color: '#444444',
     selectedColor: '#6190E8',
@@ -35,10 +35,14 @@ export default defineAppConfig({
     {
       root: 'pages/subpages',
       pages: [
-        "user/index",
-        "addRule/index",
-        "addTask/index",
-        "addTarget/index",
+        'user/index',
+        'addRule/index',
+        'addTask/index',
+        'addTarget/index',
+
+        'detailTask/index',
+        'detailTarget/index',
+        'detailRule/index',
       ],
     },
   ],

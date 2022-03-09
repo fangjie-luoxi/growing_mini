@@ -31,6 +31,10 @@ import {
   TextArea,
   DatePicker,
   Picker,
+  Switch,
+  Tag,
+  Radio,
+  RadioGroup,
 } from '@nutui/nutui-taro'
 
 const App = createApp({
@@ -68,5 +72,9 @@ App.use(Button)
   .use(TextArea)
   .use(DatePicker)
   .use(Picker)
+  .use(Switch)
+  .use(Tag)
+  .use(Radio)
+  .use(RadioGroup)
 
 export default App

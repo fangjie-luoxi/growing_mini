@@ -20,6 +20,22 @@ type OptionType = {
   xhrFields: object
 }
 
+type QueryType = {
+  query?: string // 条件查询 格式: 字段1:值1,字段2:值2 eg: Id:1,Post.Id:2
+  or?: string // 或查询 格式: 字段1:值1,字段2:值2 eg: Id:1,Post.Id:2
+  not?: string // not条件查询 格式: 字段1:值1,字段2:值2 eg: Id:1,Post.Id:2
+  select?: string // 选择的字段 格式: 字段1,字段2
+  fields?: string // 返回的字段 格式: 字段1,字段2
+  sortby?: string // 排序的字段 格式: 字段1,字段2
+  order?: string // 排序的方式 enum:desc:降序,asc:升序
+  order_by?: string // 排序 格式: 字段1 desc,字段2 asc
+  load?: string // 加载关联  格式: 关联字段1,关联字段2 eg: User,Posts
+  limit?: number // 返回的数据量
+  page?: number // 是否返回分页数据
+  offset?: number // 偏移量
+  getcounts?: number // 只返回数量
+}
+
 // request 简单封装
 export function request(url: string, params?: dataType) {
   const setCookie = (res: {
@@ -97,7 +113,7 @@ export async function getOne(tableName: string, id: number, param?: any) {
 }
 
 // getDataList 获取数据
-export async function getList(tableName: string, param?: any) {
+export async function getList(tableName: string, param?: QueryType) {
   const res = await request(baseUrl + '/' + tableName, { data: param })
   return res.data
 }
@@ -106,7 +122,7 @@ export async function getList(tableName: string, param?: any) {
 export async function create(tableName: string, param?: any) {
   const res = await request(baseUrl + '/' + tableName, {
     data: param,
-    method: 'PUT',
+    method: 'POST',
   })
   return res.data
 }
@@ -115,7 +131,7 @@ export async function create(tableName: string, param?: any) {
 export async function updata(tableName: string, id: number, param?: any) {
   const res = await request(baseUrl + '/' + tableName + '/' + id, {
     data: param,
-    method: 'POST',
+    method: 'PUT',
   })
   return res.data
 }

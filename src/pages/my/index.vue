@@ -19,9 +19,7 @@
     </view>
   </nut-row>
   <nut-row>
-    <nut-cell title="积分记录" to="/"></nut-cell>
-    <nut-cell title="目标列表" to="/"></nut-cell>
-    <nut-cell title="任务列表" to="/"></nut-cell>
+    <nut-cell title="成长记录" :is-link="true"></nut-cell>
   </nut-row>
 </template>
 

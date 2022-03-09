@@ -23,26 +23,36 @@
   <nut-row>
     <view class="tabs">
       <nut-tabs v-model="state.tab" type="smile" background="#f0f8ff">
-        <nut-tabpane title="任务" pane-key="task">任务</nut-tabpane>
-        <nut-tabpane title="目标" pane-key="target">目标</nut-tabpane>
-        <nut-tabpane title="规则" pane-key="rule">规则</nut-tabpane>
+        <nut-tabpane title="任务" pane-key="task">
+          <TaskDetail :userId="user.Id" @change="onChange" />
+        </nut-tabpane>
+        <nut-tabpane title="目标" pane-key="target">
+          <TargetDetail :userId="user.Id" @change="onChange" />
+        </nut-tabpane>
+        <nut-tabpane title="规则" pane-key="rule">
+          <RuleDetail :userId="user.Id" @change="onChange" />
+        </nut-tabpane>
       </nut-tabs>
     </view>
   </nut-row>
 
-  <nut-fixednav
+  <!-- <nut-fixednav
     :position="{ bottom: '10px' }"
     v-model:visible="state.navVisible"
     un-active-text="添加"
     active-text="选择添加"
     @selected="navSelected"
     :nav-list="navList"
-  />
+  />-->
 </template>
 
 <script setup>
 import { reactive, onMounted } from 'vue';
 import Taro from "@tarojs/taro";
+
+import TaskDetail from '@/components/TaskDetail'
+import TargetDetail from '@/components/TargetDetail'
+import RuleDetail from '@/components/RuleDetail'
 
 import { getMusic, getUser } from './service'
 import { getCurrentUser } from '@/services/user'
@@ -97,6 +107,10 @@ playManager.onEnded(() => {
 
 const navSelected = (e) => {
   console.log("选择:", e.item)
+}
+
+const onChange = (e) => {
+  state.integral += e
 }
 
 const playMusic = () => {

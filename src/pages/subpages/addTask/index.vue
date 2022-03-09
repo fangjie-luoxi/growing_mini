@@ -52,10 +52,11 @@
     <nut-form-item label="备注" prop="rm">
       <input class="nut-input-text" placeholder="请输入备注" type="text" v-model="formState.rm" />
     </nut-form-item>
+    <nut-cell>
+      <view style="width: 90%"></view>
+      <nut-button type="primary" size="small" @click="submit" :loading="state.isLoading">提交</nut-button>
+    </nut-cell>
   </nut-form>
-  <view class="submit">
-    <nut-button type="primary" size="small" @click="submit">提交</nut-button>
-  </view>
 </template>
 
 <script setup>
@@ -72,6 +73,7 @@ const today = new Date()
 
 const state = reactive({
   showDate: false,
+  isLoading: false
 })
 
 const ruleForm = ref(null);
@@ -98,17 +100,20 @@ const openDate = () => {
 const submit = () => {
   ruleForm.value.validate().then(({ valid, errors }) => {
     if (valid) {
-      console.log('success', formState);
+      state.isLoading = true
       create("gr_task", {
+        Date: moment(formState.date),
         UserId: getCurrentUser().Id,
         TkTitle: formState.title,
         TkContent: formState.content,
-        TtNum: formState.num,
+        TtNum: Number(formState.num),
         TtUnit: formState.unit,
-        Num: formState.integra,
+        Num: Number(formState.integra),
         Rm: formState.rm,
+      }).then((res) => {
+        state.isLoading = false
+        Taro.navigateBack()
       })
-      
     }
   });
 }

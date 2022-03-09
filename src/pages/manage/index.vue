@@ -7,14 +7,17 @@
   <view class="tabs">
     <nut-navbar :left-show="false" icon="uploader" @on-click-send="more">
       <template #content>
-        <nut-tabs v-model="state.tab" @change="changeTabList">
-          <nut-tabpane title="任务" pane-key="task">任务</nut-tabpane>
-          <nut-tabpane title="目标" pane-key="target">目标</nut-tabpane>
-          <nut-tabpane title="规则" pane-key="rule">规则</nut-tabpane>
+        <nut-tabs v-model="state.tab">
+          <nut-tabpane title="任务" pane-key="task"></nut-tabpane>
+          <nut-tabpane title="目标" pane-key="target"></nut-tabpane>
+          <nut-tabpane title="规则" pane-key="rule"></nut-tabpane>
         </nut-tabs>
       </template>
     </nut-navbar>
   </view>
+  <TargetList :userId="userInfo.Id" v-if="state.tab == 'target'" />
+  <RuleList :userId="userInfo.Id" v-else-if="state.tab == 'rule'" />
+  <TaskList :userId="userInfo.Id" v-else />
 </template>
 
 <script setup>
@@ -22,16 +25,20 @@ import { reactive } from 'vue';
 import Taro from "@tarojs/taro";
 import { getCurrentUser } from '@/services/user'
 
+import TaskList from '@/components/TaskList'
+import RuleList from '@/components/RuleList'
+import TargetList from '@/components/TargetList'
+
+
 import "./index.scss";
+
+const userInfo = getCurrentUser()
 
 const state = reactive({
   tab: 'task',
   showRound: false,
+  tasks: []
 });
-
-const changeTabList = (tab) => {
-  console.log("tab:", tab);
-}
 
 const more = () => {
   state.showRound = true
