@@ -49,7 +49,6 @@ onMounted(() => {
 const getData = () => {
   getList("gr_rule", { query: "UserId:" + props.userId, order_by: "UpdatedAt desc", limit: -1 }).then(
     (res) => {
-      console.log("res.data:", res.data)
       if (res.success) {
         state.rules = res.data
       }

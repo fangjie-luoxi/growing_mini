@@ -2,9 +2,9 @@
 /* eslint-disable */
 import Taro from '@tarojs/taro'
 
-import { request } from '../api'
+import { request } from '@/services/api'
 
-import { upCurrentUser } from '../user/index'
+import { upCurrentUser } from '@/services/user/index'
 
 // handleLogin 处理登录
 export const handleLogin = () => {

@@ -29,12 +29,18 @@ export async function upCurrentUser() {
     if (userInfo.data.success) {
       Taro.setStorageSync('userInfo', userInfo.data.data)
     }
-    console.log('userInfo:', userInfo.data.data)
   })
 }
 
 export function getCurrentUser(): userType {
   return Taro.getStorageSync('userInfo')
+}
+
+export async function getUserInfo() {
+  request('/login_user', {
+    method: 'GET',
+    data: { resp: 'antd' },
+  })
 }
 
 /** 获取当前的用户 GET /api/currentUser */

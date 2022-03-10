@@ -1,5 +1,6 @@
 export default defineAppConfig({
   pages: ['pages/index/index', 'pages/manage/index', 'pages/my/index'],
+  requiredBackgroundModes: ["audio"],
   tabBar: {
     color: '#444444',
     selectedColor: '#6190E8',
@@ -31,6 +32,7 @@ export default defineAppConfig({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black',
   },
+
   subPackages: [
     {
       root: 'pages/subpages',

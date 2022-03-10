@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
-
-import { handleLogin } from '@/services/login/api'
+import Taro from '@tarojs/taro'
 
 import '@nutui/nutui-taro/dist/style.css'
 import './app.scss'
@@ -38,12 +37,32 @@ import {
 } from '@nutui/nutui-taro'
 
 const App = createApp({
-  onLaunch(options) {
-    console.log('来源:', options.referrerInfo)
-    // 用户登录
-    handleLogin()
+  onShow(options) {
+    setTimeout(() => {
+      const updateManager = Taro.getUpdateManager()
+      updateManager.onCheckForUpdate((res) => {
+        if (res.hasUpdate) {
+          updateManager.onUpdateReady(() => {
+            Taro.showModal({
+              title: '更新提示',
+              content: '检测到新版本, 是否下载新版本并重启小程序?',
+              success: (res) => {
+                if (res.confirm) {
+                  updateManager.applyUpdate()
+                }
+              },
+            })
+          })
+          updateManager.onUpdateFailed(() => {
+            Taro.showModal({
+              title: '已经有新版本了哟~',
+              content: '新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~',
+            })
+          })
+        }
+      })
+    }, 3000)
   },
-  onShow(options) {},
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
 })
 
