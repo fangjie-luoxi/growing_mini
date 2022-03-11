@@ -8,7 +8,7 @@ import Taro from "@tarojs/taro";
 
 import { login } from './service'
 
-import { upCurrentUser } from '@/services/user'
+import { request } from '@/services/api'
 
 const emit = defineEmits(['login'])
 
@@ -23,9 +23,17 @@ Taro.login({
                 LoginCode: res.code,
                 LoginType: 'mini',
             }).then((res) => {
-                Taro.hideLoading()
-                upCurrentUser()
-                emit("login")
+                request('/login_user', {
+                    method: 'GET',
+                    data: { resp: 'antd' },
+                }).then((userInfo) => {
+                    if (userInfo.data.success) {
+                        Taro.setStorageSync('userInfo', userInfo.data.data)
+                        emit("login")
+                        Taro.hideLoading()
+                    }
+                })
+
             })
         }
     },
